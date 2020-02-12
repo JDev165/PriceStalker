@@ -1,0 +1,36 @@
+/*--------------------------------------------------------------
+General rules
+--------------------------------------------------------------*/
+
+html{
+    font-size: 16px
+}
+
+body{
+    font-size: 1rem;
+    font-family: 'Helvetica', Arial, sans-serif;
+    margin: 0;
+    background: #FFFFFA;
+}
+
+/*--------------------------------------------------------------
+Site header and footer styling
+--------------------------------------------------------------*/
+
+.site-footer {
+    font-style: italic;
+    font-size: 1rem;
+    text-align: center;
+    padding: 2em;
+    color: white;
+    background: #0A2239;
+}
+
+/*--------------------------------------------------------------
+Basic responsive layout for all browsers:
+--------------------------------------------------------------*/
+
+.site {
+	max-width: 100%;
+	margin: 0 auto;
+}

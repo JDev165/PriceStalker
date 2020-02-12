@@ -1,0 +1,30 @@
+{% load static %}
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Track your favorite products' prices."/>
+
+        <title>Price Stalker</title>
+
+        <link rel="stylesheet" href="{% static 'main.css' %}" type="text/css" media="all">
+        <script type="text/javascript" src="{% static 'main.js' %}"></script>
+    </head>
+
+    <body class="site">
+
+        <header class="site-header">
+            <div class="site-header-content-wrapper">
+                <h1 title="Price Tracker" class="site-brand">Price Stalker</h1>
+                <p class="site-description">Stay up to date on product prices</p>
+            </div>
+        </header>
+
+        {% block content %}
+        {% endblock %}
+
+        <footer class="site-footer">
+            
+        </footer>
+    </body>
+</html>
