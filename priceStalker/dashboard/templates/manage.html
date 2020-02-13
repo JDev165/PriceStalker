@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form id="add_product" name="add_product" method="post" action="{% url 'manage' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{ formset }}
+
+    <input type="submit" id="submit" name="submit" />
+</form>
+
+{% endblock %}

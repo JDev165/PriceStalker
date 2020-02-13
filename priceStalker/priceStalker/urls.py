@@ -20,4 +20,5 @@ from dashboard import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.dashboard, name='dashboard'),
+    path('add/product', views.manage, name='manage'),
 ]

@@ -22,8 +22,9 @@ Site header and footer styling
     font-size: 1rem;
     text-align: center;
     padding: 2em;
+    /** 
     color: white;
-    background: #0A2239;
+    background: #0A2239; **/
 }
 
 /*--------------------------------------------------------------
