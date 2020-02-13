@@ -6,4 +6,4 @@ from dashboard.models import Products
 class ProductsForm(ModelForm):
     class Meta:
         model = Products
-        fields = ['product_name', 'product_url', ]
+        fields = ['name', 'url', ]

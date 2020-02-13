@@ -4,8 +4,8 @@ from django.db import models
 
 
 class Products(models.Model):
-    product_name = models.CharField(max_length=50, blank=False)
-    product_url = models.URLField(max_length=2000, blank=False)
+    name = models.CharField(max_length=50, blank=False)
+    url = models.URLField(max_length=2000, blank=False)
 
     # override the way this model is displayed in the admin side
 # without this, all we see is 'Products Object'
