@@ -16,7 +16,8 @@
 	</section>
 
     <section id="subscription_form" name="subscription_form" class="section-subscription">
-        <form id="add_product" name="add_product" method="post" action="" enctype="multipart/form-data">
+    	<h2>Subscribe to notifications</h2>
+        <form id="add_product" name="add_product" method="post" action="{% url 'subscribe' %}" enctype="multipart/form-data">
 		    {% csrf_token %}
 
 		    {{ formset2 }}

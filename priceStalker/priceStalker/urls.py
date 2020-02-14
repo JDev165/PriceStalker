@@ -20,4 +20,6 @@ from dashboard import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.dashboard, name='dashboard'),
+    path('subscribe/', views.subscribe, name='subscribe'),
+    path('error/', views.error, name='error'),
 ]
