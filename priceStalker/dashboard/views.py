@@ -23,7 +23,10 @@ def subscribe(request):
             url = reverse('dashboard')
         else:
             url = reverse('error')
-        return HttpResponseRedirect(url)
+    else:
+        url = reverse('error')
+
+    return HttpResponseRedirect(url)
 
 
 def error(request):
