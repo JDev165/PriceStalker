@@ -4,7 +4,7 @@
 
 <main>
 	
-	<section id="quick-track" name="quick-track" class="section-quick-track">
+	<section id="quick_track" name="quick_track" class="section-quick-track">
 		<h2>Track a product</h2>
 		<form id="add_product" name="add_product" method="post" action="" enctype="multipart/form-data">
 		    {% csrf_token %}
@@ -15,8 +15,14 @@
 		</form>
 	</section>
 
-    <section class="section">
-        Test
+    <section id="subscription_form" name="subscription_form" class="section-subscription">
+        <form id="add_product" name="add_product" method="post" action="" enctype="multipart/form-data">
+		    {% csrf_token %}
+
+		    {{ formset2 }}
+
+		    <input type="submit" id="submit" name="submit" />
+		</form>
     </section>
 </main>
 

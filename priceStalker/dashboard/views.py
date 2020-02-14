@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from dashboard.forms import ProductsForm
+from dashboard.forms import ProductsForm, NotificationsForm
 from dashboard.classes import Form
 
 # Create your views here.
@@ -8,7 +8,9 @@ from dashboard.classes import Form
 
 def dashboard(request):
     productsForm = ProductsForm()
-    return render(request, 'index.html', {'formset': productsForm})
+    notificationsForm = NotificationsForm()
+    return render(request, 'index.html', {'formset': productsForm, 
+    									  'formset2': NotificationsForm})
 
  # if request.method == 'POST':
  #        productsForm = Form(ProductsForm(request.method))
