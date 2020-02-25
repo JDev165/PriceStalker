@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
@@ -32,16 +33,12 @@ def subscribe(request):
 def stalk(request):
     # request from fetch results in not valid form
     if request.method == 'POST':
-        productsForm = ProductsForm(request.POST)
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        productsForm = ProductsForm(body)
         if productsForm.is_valid():
-            productRecord = productsForm.save()
-            jsonResponse = {'id': productRecord.id,
-                            'name': productRecord.name, 'url': productRecord.url}
-            return HttpResponse(jsonResponse)
-        else:
-            return HttpResponseRedirect(reverse('error'), {'output': productsForm.is_valid()})
-    else:
-        return HttpResponseRedirect(reverse('error'), {'output': 'failed'})
+            productsForm.save()
+            return JsonResponse(body)
 
 
 def error(request):

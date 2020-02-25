@@ -1,14 +1,18 @@
 async function postData(requestUrl, elementIds){
 	const idsArray 				= elementIds.split(',');
 	const data 					= createDataFromElements(idsArray);
-	// add Django CSRFToken or else request won't go through
-	const headersData			= { 'X-CSRFToken': getCookie('csrftoken'), 'Content-Type': 'application/json' };
-	const initData 				= { method: 'POST', credentials: 'same-origin', headers: headersData, body: JSON.stringify(data) }
-	const request 				= new Request(requestUrl, initData);
-	const response 				= await fetch(request);
+	const response 		= await fetch(requestUrl, {
+	    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+	    mode: 'cors', // no-cors, *cors, same-origin
+	    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+	    credentials: 'same-origin', // include, *same-origin, omit
+	    headers: { 'X-CSRFToken': getCookie('csrftoken'), 'Accept': 'application/json','Content-Type': 'application/json' },
+	    referrerPolicy: 'no-referrer', // no-referrer, *client
+	    body: JSON.stringify(data) // body data type must match "Content-Type" header
+	});
+	const jsonResponse	= await response.json();
+
 	
-	const reponseData 			= await response.json();
-	console.log(reponseData);
 }
 
 function createDataFromElements(keysArray){
