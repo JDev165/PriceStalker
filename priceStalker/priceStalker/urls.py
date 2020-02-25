@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.dashboard, name='dashboard'),
     path('subscribe/', views.subscribe, name='subscribe'),
+    path('stalk/product', views.stalk, name='stalk'),
     path('error/', views.error, name='error'),
 ]

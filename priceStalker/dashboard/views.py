@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from dashboard.forms import ProductsForm, NotificationsForm
 from dashboard.classes import Form
@@ -27,6 +27,21 @@ def subscribe(request):
         url = reverse('error')
 
     return HttpResponseRedirect(url)
+
+
+def stalk(request):
+    # request from fetch results in not valid form
+    if request.method == 'POST':
+        productsForm = ProductsForm(request.POST)
+        if productsForm.is_valid():
+            productRecord = productsForm.save()
+            jsonResponse = {'id': productRecord.id,
+                            'name': productRecord.name, 'url': productRecord.url}
+            return HttpResponse(jsonResponse)
+        else:
+            return HttpResponseRedirect(reverse('error'), {'output': productsForm.is_valid()})
+    else:
+        return HttpResponseRedirect(reverse('error'), {'output': 'failed'})
 
 
 def error(request):

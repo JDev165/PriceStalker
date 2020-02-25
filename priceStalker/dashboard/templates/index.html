@@ -6,13 +6,11 @@
 	
 	<section id="quick_track" name="quick_track" class="section-quick-track">
 		<h2>Track a product</h2>
-		<form id="add_product" name="add_product" method="post" action="" enctype="multipart/form-data">
-		    {% csrf_token %}
+		{% csrf_token %}
 
-		    {{ formset }}
+		{{ formset }}
 
-		    <input type="submit" id="submit" name="submit" />
-		</form>
+		<button id="submit_quick_track" name="submit_quick_track" onclick="postData(`{% url 'stalk' %}`,'id_name, id_url');">Track</button>
 	</section>
 
     <section id="subscription_form" name="subscription_form" class="section-subscription">
