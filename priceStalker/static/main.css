@@ -17,7 +17,7 @@ body{
 Section styles
 --------------------------------------------------------------*/
 
-.section-quick-track {
+.section-quick-stalk, .section_recently_stalked {
     display: flex;
     flex-direction: column;
     justify-content: center;

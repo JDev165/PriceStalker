@@ -4,12 +4,21 @@
 
 <main>
 	
-	<section id="quick_track" name="quick_track" class="section-quick-track">
-		<h2>Track a product</h2>
+	<section id="quick_stalk" name="quick_stalk" class="section-quick-stalk">
+		<h2>Stalk a product</h2>
 
 		{{ formset }}
 
-		<button id="submit_quick_track" name="submit_quick_track" onclick="postData(`{% url 'stalk' %}`,'id_name, id_url');">Track</button>
+		<button id="submit_quick_stalk" name="submit_quick_stalk" onclick="postData(`{% url 'stalk' %}`,'id_name, id_url');">Stalk</button>
+	</section>
+
+	<section id="recently_stalked" name="recently_stalked" class="section_recently_stalked">
+		{% for product in products %}
+		<div id='product_{{product.id}}'>
+			<h3>{{product.name}}</h2>
+			<a href='{{product.url}}' target='_blank'>{{product.name}} Link</a>
+		</div>
+		{% endfor %}
 	</section>
 
     <section id="subscription_form" name="subscription_form" class="section-subscription">
