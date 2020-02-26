@@ -1,7 +1,7 @@
 async function postData(requestUrl, elementIds){
-	const idsArray 				= elementIds.split(',');
-	const data 					= createDataFromElements(idsArray);
-	const response 		= await fetch(requestUrl, {
+	const idsArray = elementIds.split(',');
+	const data 	   = createDataFromElements(idsArray);
+	const response = await fetch(requestUrl, {
 	    method: 'POST', // *GET, POST, PUT, DELETE, etc.
 	    mode: 'cors', // no-cors, *cors, same-origin
 	    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -10,7 +10,7 @@ async function postData(requestUrl, elementIds){
 	    referrerPolicy: 'no-referrer', // no-referrer, *client
 	    body: JSON.stringify(data) // body data type must match "Content-Type" header
 	});
-	const jsonResponse	= await response.json();
+	const jsonResponse = await response.json();
 
 	
 }

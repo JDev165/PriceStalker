@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 
 # Create your models here.
@@ -6,6 +7,7 @@ from django.db import models
 class Products(models.Model):
     name = models.CharField(max_length=50, blank=False)
     url = models.URLField(max_length=2000, blank=False)
+    date_stalked = models.DateTimeField(auto_now_add=True, blank=False)
 
     # override the way this model is displayed in the admin side
     # without this, all we see is 'Products Object'
