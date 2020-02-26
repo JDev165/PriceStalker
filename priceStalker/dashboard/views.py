@@ -38,7 +38,13 @@ def stalk(request):
         productsForm = ProductsForm(body)
         if productsForm.is_valid():
             productsForm.save()
-            return JsonResponse(body)
+            jsonResponse = JsonResponse(body)
+        else:
+            jsonResponse = JsonResponse({})
+    else:
+        jsonResponse = JsonResponse({})
+
+    return jsonResponse
 
 
 def error(request):
