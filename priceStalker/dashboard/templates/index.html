@@ -13,12 +13,14 @@
 	</section>
 
 	<section id="recently_stalked" name="recently_stalked" class="section_recently_stalked">
-		{% for product in products %}
-		<div id='product_{{product.id}}'>
-			<h3>{{product.name}}</h2>
-			<a href='{{product.url}}' target='_blank'>{{product.name}} Link</a>
+		<div>
+			{% for product in products %}
+			<div id='product_{{product.id}}'>
+				<h3>{{product.name}}</h3>
+				<a href='{{product.url}}' target='_blank'>{{product.name}} Link</a>
+			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
 	</section>
 
     <section id="subscription_form" name="subscription_form" class="section-subscription">
