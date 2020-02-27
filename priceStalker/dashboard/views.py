@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from dashboard.forms import ProductsForm, NotificationsForm
 from dashboard.classes import Form
-from dashboard.models import Products 
+from dashboard.models import Products
 
 
 # Create your views here.
@@ -15,7 +15,7 @@ def dashboard(request):
     notificationsForm = NotificationsForm()
     products = Products.objects.all()
     return render(request, 'index.html', {'formset': productsForm,
-                                          'formset2': NotificationsForm, 
+                                          'formset2': NotificationsForm,
                                           'products': products})
 
 
@@ -52,16 +52,3 @@ def stalk(request):
 
 def error(request):
     return render(request, 'error.html')
-
-
-# if request.method == 'POST':
- #        productsForm = Form(ProductsForm(request.method))
- #        productRecord = productsForm.saveRecord()
-
- #        url = reverse('success', kwargs={'workoutID': productRecord.id})
- #        return HttpResponseRedirect(url)
- #    else:
- #        productsForm = ProductsForm()
-
- #    return render(request, 'manage.html', {'formset': productsForm})
- #

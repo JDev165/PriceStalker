@@ -16,8 +16,14 @@ body{
 /*--------------------------------------------------------------
 Section styles
 --------------------------------------------------------------*/
+.section-quick-stalk {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-.section-quick-stalk, .section_recently_stalked {
+.section-recently-stalked {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,6 +48,14 @@ Site header and footer styling
     /** 
     color: white;
     background: #0A2239; **/
+}
+
+/*--------------------------------------------------------------
+Button styles
+--------------------------------------------------------------*/
+
+.submit-button{
+    margin: 10px !important;
 }
 
 /*--------------------------------------------------------------
