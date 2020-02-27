@@ -13,7 +13,7 @@ from dashboard.models import Products
 def dashboard(request):
     productsForm = ProductsForm()
     notificationsForm = NotificationsForm()
-    products = Products.objects.all()
+    products = Products.objects.all().order_by('-id')[:5]
     return render(request, 'index.html', {'formset': productsForm,
                                           'formset2': NotificationsForm,
                                           'products': products})

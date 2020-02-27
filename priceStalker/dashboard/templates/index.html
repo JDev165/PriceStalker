@@ -11,15 +11,18 @@
 			{{ formset }}
 		</div>
 
-		<button id="submit_quick_stalk" name="submit_quick_stalk" class="submit-button" onclick="postData(`{% url 'stalk' %}`,'id_name, id_url');">Stalk</button>
+		<button id="submit_quick_stalk" name="submit_quick_stalk" class="submit-button" onclick="postData(`{% url 'stalk' %}`,'id_name, id_url'); generateProduct()">Stalk</button>
 	</section>
 
 	<section id="recently_stalked" name="recently_stalked" class="section-recently-stalked">
 		<div>
 			{% for product in products %}
-			<div id='product_{{product.id}}'>
-				<h3>{{product.name}}</h3>
-				<a href='{{product.url}}' target='_blank'>{{product.name}} Link</a>
+			<div class="product_{{product.id}}" style="width: 18rem;">
+				<div class="card-body">
+    				<h5 class="card-title">{{product.name}}</h5>
+    				<p class="card-text">coming soon...</p>
+    				<a href="{{product.url}}" target="_blank" class="btn btn-primary">View Product</a>
+  				</div>
 			</div>
 			{% endfor %}
 		</div>
