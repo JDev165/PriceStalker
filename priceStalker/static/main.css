@@ -25,8 +25,8 @@ Section styles
 
 .section-recently-stalked {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -66,3 +66,21 @@ Basic responsive layout for all browsers:
 	max-width: 100%;
 	margin: 0 auto;
 }
+
+/*--------------------------------------------------------------
+CSS Grid
+--------------------------------------------------------------*/
+
+/*
+.recently-stalked-grid{
+    display: grid;
+    grid-template-columns: 1fr repeat(2, 10px 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+    "recent recent recent recent recent"
+}
+
+.recently-stalked-area{
+    grid-area: recent;
+}
+*/

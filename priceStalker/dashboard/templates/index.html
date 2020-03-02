@@ -11,23 +11,23 @@
 			{{ formset }}
 		</div>
 
-		<button id="submit_quick_stalk" name="submit_quick_stalk" class="submit-button" onclick="postData(`{% url 'stalk' %}`,'id_name, id_url'); generateProduct()">Stalk</button>
+		<button id="submit_quick_stalk" name="submit_quick_stalk" class="submit-button" 
+				onclick="postData(`{% url 'stalk' %}`,'id_name, id_url'); generateProduct()">Stalk</button>
 	</section>
 
 	<section id="recently_stalked" name="recently_stalked" class="section-recently-stalked">
-		<div>
-			{% for product in products %}
-			<div class="product_{{product.id}}" style="width: 18rem;">
+		{% for product in products %}
+			<div id="product_{{product.id}}" class="recently-stalked-area" style="width: 18rem;">
 				<div class="card-body">
     				<h5 class="card-title">{{product.name}}</h5>
     				<p class="card-text">coming soon...</p>
     				<a href="{{product.url}}" target="_blank" class="btn btn-primary">View Product</a>
   				</div>
 			</div>
-			{% endfor %}
-		</div>
+		{% endfor %}
 	</section>
-
+	
+	<!---
     <section id="subscription_form" name="subscription_form" class="section-subscription">
     	<h2>Subscribe to notifications</h2>
         <form id="add_product" name="add_product" method="post" action="{% url 'subscribe' %}" enctype="multipart/form-data">
@@ -38,6 +38,7 @@
 		    <input type="submit" id="submit" name="submit" />
 		</form>
     </section>
+    --->
 </main>
 
 {% endblock %}
