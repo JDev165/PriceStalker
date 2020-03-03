@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Products, Prices, Notifications
+from .models import Products, Prices, Notifications, Bookmarks
 
 # Register your models here.
 
@@ -17,3 +17,7 @@ class PricesAdmin(admin.ModelAdmin):
 @admin.register(Notifications)
 class NotificationsAdmin(admin.ModelAdmin):
     fields = ('email',)
+
+@admin.register(Bookmarks)
+class BookmarksAdmin(admin.ModelAdmin):
+	fields = ('product',)

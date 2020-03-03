@@ -33,3 +33,13 @@ class Notifications(models.Model):
 
     def __str__(self):
         return self.email
+
+class Bookmarks(models.Model):
+    product = models.ForeignKey(Products, on_delete=models.CASCADE,
+                                related_name='bookmarked_product',
+                                related_query_name='bookmarked_product')
+
+    date_bookmarked = models.DateTimeField(auto_now_add=True, blank=False)
+
+    def __str__(self):
+        return self.product

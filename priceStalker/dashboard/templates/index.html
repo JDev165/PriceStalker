@@ -2,6 +2,7 @@
 
 {% block content %}
 
+{% load static %}
 <main>
 	
 	<section id="quick_stalk" name="quick_stalk" class="section-quick-stalk">
@@ -22,6 +23,7 @@
     				<h5 class="card-title">{{product.name}}</h5>
     				<p class="card-text">coming soon...</p>
     				<a href="{{product.url}}" target="_blank" class="btn btn-primary">View Product</a>
+    				<img class="img-spacing" src="{% static 'icons/bookmark.svg' %}">
   				</div>
 			</div>
 		{% endfor %}
