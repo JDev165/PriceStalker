@@ -34,12 +34,26 @@ class Notifications(models.Model):
     def __str__(self):
         return self.email
 
+
 class Bookmarks(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE,
                                 related_name='bookmarked_product',
                                 related_query_name='bookmarked_product')
 
     date_bookmarked = models.DateTimeField(auto_now_add=True, blank=False)
+
+    def __str__(self):
+        return self.product
+
+
+class Keywords(models.Model):
+    product = models.ForeignKey(Products, on_delete=models.CASCADE,
+                                related_name='tagged_product',
+                                related_query_name='tagged_product')
+
+    keyword = models.CharField(max_length=50, blank=False)
+
+    date_tagged = models.DateTimeField(auto_now_add=True, blank=False)
 
     def __str__(self):
         return self.product
