@@ -2,10 +2,11 @@
 function toggleBookmark(requestUrl, data, imgElement){
 	const bookmarkState = setBookmarkState(data, imgElement);
 	data['bookmark'] = bookmarkState;
-	// const response = postData(requestUrl, data);
-	//if (response != -1){
-	//	swapImages(bookmarkState);
-	//}
+	const response = postData(requestUrl, data);
+	console.log(response != -1);
+	if (response != -1){
+		swapImages(bookmarkState, imgElement);
+	}
 }
 
 function setBookmarkState(data, imgElement){
@@ -27,12 +28,12 @@ function postData(requestUrl, data){
 	return response;
 }
 
-function swapImages(state){
+function swapImages(state, imgElement){
 	if(state){
-		imgElement.setAttribute('src', '/static/icons/bookmark.svg');
+		imgElement.setAttribute('src', '/static/icons/bookmarked.svg');
 	}
 	else{
-	 	imgElement.setAttribute('src', '/static/icons/bookmarked.svg');
+	 	imgElement.setAttribute('src', '/static/icons/bookmark.svg');
 	}
 }
 
@@ -58,6 +59,7 @@ function createDataFromElements(keysArray){
 }
 
 async function makeRequest(requestUrl, data){
+	var jsonResponse = '';
 	try{
 		const response = await fetch(requestUrl, {
 		    method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -68,14 +70,13 @@ async function makeRequest(requestUrl, data){
 		    referrerPolicy: 'no-referrer', // no-referrer, *client
 		    body: JSON.stringify(data) // body data type must match "Content-Type" header
 		});
-		const jsonResponse = await response.json();
+		jsonResponse = await response.json();
 	}
 	catch(error){
-		const jsonResponse = -1; 
+		jsonResponse = -1; 
 		console.error(error);
 	}
-
-	return jsonResponse
+	return jsonResponse;
 }
 
 function getCookie(name){

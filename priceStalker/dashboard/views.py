@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from dashboard.forms import ProductsForm, NotificationsForm
 from dashboard.classes import Form
-from dashboard.models import Products
+from dashboard.models import Products, Bookmarks
 
 
 # Create your views here.
@@ -51,7 +51,21 @@ def stalk(request):
 
 
 def bookmark(request):
-    pass
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        bookmarkState = body['bookmark']
+        if bookmarkState == 1:
+            productId = body['product']
+            product = Products.objects.get(id = productId)
+            bookmark = Bookmarks(product = product)
+            bookmark.save()
+        else:
+            productId = body['product']
+            product = Products.objects.get(id = productId)
+            bookmark.delete()
+
+        return JsonResponse({'product' : productId})
 
 
 def error(request):
