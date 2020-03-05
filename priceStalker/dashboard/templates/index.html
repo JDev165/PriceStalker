@@ -23,7 +23,8 @@
     				<h5 class="card-title">{{product.name}}</h5>
     				<p class="card-text">coming soon...</p>
     				<a href="{{product.url}}" target="_blank" class="btn btn-primary">View Product</a>
-    				<img class="img-spacing" src="{% static 'icons/bookmark.svg' %}">
+    				<img class="img-spacing" src="{% static 'icons/bookmark.svg' %}"
+    				onclick= "swapImages(this);">
   				</div>
 			</div>
 		{% endfor %}

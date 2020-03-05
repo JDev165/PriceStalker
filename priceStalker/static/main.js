@@ -59,3 +59,14 @@ function getCookie(name){
 	const cookieValue = document.cookie.match(name + '=[^;]*')[0].split('=')[1];
 	return cookieValue;
 }
+
+
+function swapImages(imgElement){
+	const imgSrc = imgElement.getAttribute('src');
+	 if(imgSrc == '/static/icons/bookmark.svg'){
+	 	imgElement.setAttribute('src', '/static/icons/bookmarked.svg');
+	 }	if(imgSrc == '/static/icons/bookmarked.svg') {
+	 	imgElement.src = '/static/icons/bookmark.svg';
+	 }
+}
+
