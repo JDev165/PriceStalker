@@ -50,5 +50,9 @@ def stalk(request):
     return jsonResponse
 
 
+def bookmark(request):
+    pass
+
+
 def error(request):
     return render(request, 'error.html')

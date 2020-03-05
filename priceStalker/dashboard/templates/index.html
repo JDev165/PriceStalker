@@ -13,7 +13,7 @@
 		</div>
 
 		<button id="submit_quick_stalk" name="submit_quick_stalk" class="submit-button" 
-				onclick="postData(`{% url 'stalk' %}`,'id_name, id_url'); generateProduct()">Stalk</button>
+				onclick="postFieldsData(`{% url 'stalk' %}`,'id_name, id_url'); generateProduct();">Stalk</button>
 	</section>
 
 	<section id="recently_stalked" name="recently_stalked" class="section-recently-stalked">
@@ -24,7 +24,7 @@
     				<p class="card-text">coming soon...</p>
     				<a href="{{product.url}}" target="_blank" class="btn btn-primary">View Product</a>
     				<img class="img-spacing" src="{% static 'icons/bookmark.svg' %}"
-    				onclick= "swapImages(this);">
+    				onclick= "toggleBookmark(`{% url 'stalk' %}`, {'product': '{{product.id}}'}, this);">
   				</div>
 			</div>
 		{% endfor %}

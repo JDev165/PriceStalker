@@ -1,21 +1,89 @@
-var data = {};
+//Bookmark functions
+function toggleBookmark(requestUrl, data, imgElement){
+	const bookmarkState = setBookmarkState(data, imgElement);
+	data['bookmark'] = bookmarkState;
+	// const response = postData(requestUrl, data);
+	//if (response != -1){
+	//	swapImages(bookmarkState);
+	//}
+}
 
-async function postData(requestUrl, elementIds){
+function setBookmarkState(data, imgElement){
+	let state = 0;
+	if(imgElement.getAttribute('src') == '/static/icons/bookmark.svg'){
+		state = 1;
+	}
+	else{
+		state = 0;
+	}
+
+	return state;
+}
+
+// Request functions
+function postData(requestUrl, data){
+	const response = makeRequest(requestUrl, data);
+
+	return response;
+}
+
+function swapImages(state){
+	if(state){
+		imgElement.setAttribute('src', '/static/icons/bookmark.svg');
+	}
+	else{
+	 	imgElement.setAttribute('src', '/static/icons/bookmarked.svg');
+	}
+}
+
+function postFieldsData(requestUrl, elementIds){
 	const idsArray = elementIds.split(',');
 	data = createDataFromElements(idsArray);
-	const response = await fetch(requestUrl, {
-	    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-	    mode: 'cors', // no-cors, *cors, same-origin
-	    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-	    credentials: 'same-origin', // include, *same-origin, omit
-	    headers: { 'X-CSRFToken': getCookie('csrftoken'), 'Accept': 'application/json','Content-Type': 'application/json' },
-	    referrerPolicy: 'no-referrer', // no-referrer, *client
-	    body: JSON.stringify(data) // body data type must match "Content-Type" header
-	});
-	const jsonResponse = await response.json();
+	const response = makeRequest(requestUrl, data);
 
-	
+	return response
 }
+
+function createDataFromElements(keysArray){
+	let	data = {};
+	for(let index = 0; index < keysArray.length; index++){
+		let id 		= keysArray[index].trim();
+		let element = document.getElementById(id);
+		let key 	= id.split('_')[1];
+		let value	= element.value;
+		data[key] 	= value;
+	}
+
+	return data;
+}
+
+async function makeRequest(requestUrl, data){
+	try{
+		const response = await fetch(requestUrl, {
+		    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+		    mode: 'cors', // no-cors, *cors, same-origin
+		    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+		    credentials: 'same-origin', // include, *same-origin, omit
+		    headers: { 'X-CSRFToken': getCookie('csrftoken'), 'Accept': 'application/json','Content-Type': 'application/json' },
+		    referrerPolicy: 'no-referrer', // no-referrer, *client
+		    body: JSON.stringify(data) // body data type must match "Content-Type" header
+		});
+		const jsonResponse = await response.json();
+	}
+	catch(error){
+		const jsonResponse = -1; 
+		console.error(error);
+	}
+
+	return jsonResponse
+}
+
+function getCookie(name){
+	const cookieValue = document.cookie.match(name + '=[^;]*')[0].split('=')[1];
+	return cookieValue;
+}
+
+//Generic functions
 
 function generateProduct(){
 	const recentlyStalkedSection = document.getElementById('recently_stalked');
@@ -42,32 +110,4 @@ function generateProduct(){
 	recentlyStalkedSection.prepend(cardParentDiv);
 }
 
-function createDataFromElements(keysArray){
-	var	data = {};
-	for(var index = 0; index < keysArray.length; index++){
-		var id 		= keysArray[index].trim();
-		var element = document.getElementById(id);
-		var key 	= id.split('_')[1];
-		var value	= element.value;
-		data[key] 	= value;
-	}
-
-	return data;
-}
-
-function getCookie(name){
-	const cookieValue = document.cookie.match(name + '=[^;]*')[0].split('=')[1];
-	return cookieValue;
-}
-
-
-function swapImages(imgElement){
-	const imgSrc = imgElement.getAttribute('src');
-	if(imgSrc == '/static/icons/bookmark.svg'){
-		imgElement.setAttribute('src', '/static/icons/bookmarked.svg');
-	}
-	else{
-	 	imgElement.setAttribute('src', '/static/icons/bookmark.svg');
-	}
-}
 
