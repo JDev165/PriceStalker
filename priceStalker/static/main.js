@@ -63,10 +63,11 @@ function getCookie(name){
 
 function swapImages(imgElement){
 	const imgSrc = imgElement.getAttribute('src');
-	 if(imgSrc == '/static/icons/bookmark.svg'){
-	 	imgElement.setAttribute('src', '/static/icons/bookmarked.svg');
-	 }	if(imgSrc == '/static/icons/bookmarked.svg') {
-	 	imgElement.src = '/static/icons/bookmark.svg';
-	 }
+	if(imgSrc == '/static/icons/bookmark.svg'){
+		imgElement.setAttribute('src', '/static/icons/bookmarked.svg');
+	}
+	else{
+	 	imgElement.setAttribute('src', '/static/icons/bookmark.svg');
+	}
 }
 

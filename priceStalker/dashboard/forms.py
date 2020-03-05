@@ -6,13 +6,13 @@ from dashboard.models import Products, Notifications, Bookmarks, Keywords
 class ProductsForm(ModelForm):
     class Meta:
         model = Products
-        fields = ('name', 'url', )
+        fields = ('name', 'url',)
 
 
 class NotificationsForm(ModelForm):
     class Meta:
         model = Notifications
-        fields = ('email', )
+        fields = ('email',)
 
 
 class BookamrksForm(ModelForm):
