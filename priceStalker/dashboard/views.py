@@ -55,15 +55,14 @@ def bookmark(request):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         bookmarkState = body['bookmark']
-        if bookmarkState == 1:
-            productId = body['product']
-            product = Products.objects.get(id=productId)
+        productId = body['product']
+        product = Products.objects.get(id=productId)
+        bookmark = Bookmarks.objects.filter(product = product)
+        if bookmark.exists():
+            bookmark.update(state = bookmarkState)
+        else:
             bookmark = Bookmarks(product=product, state=bookmarkState)
             bookmark.save()
-        else:
-            productId = body['product']
-            product = Products.objects.get(id=productId)
-            bookmark.delete()
 
         return JsonResponse({'product': productId})
 
