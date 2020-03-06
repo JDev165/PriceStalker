@@ -40,6 +40,8 @@ class Bookmarks(models.Model):
                                 related_name='bookmarked_product',
                                 related_query_name='bookmarked_product')
 
+    state = models.BooleanField(default=0, blank=False)
+
     date_bookmarked = models.DateTimeField(auto_now_add=True, blank=False)
 
     def __str__(self):
