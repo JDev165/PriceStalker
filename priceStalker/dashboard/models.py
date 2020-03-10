@@ -45,7 +45,7 @@ class Bookmarks(models.Model):
     date_bookmarked = models.DateTimeField(auto_now_add=True, blank=False)
 
     def __str__(self):
-        return self.product
+        return self.state
 
 
 class Keywords(models.Model):
