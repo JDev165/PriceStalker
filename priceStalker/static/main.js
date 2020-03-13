@@ -91,24 +91,51 @@ function generateProduct(){
 	const cardParentDiv = document.createElement('div');
 	cardParentDiv.className = 'card';
 	cardParentDiv.setAttribute('style', 'width: 18rem');
-	const cardBodyDiv = document.createElement('div');
-	cardBodyDiv.className = 'card-body';
-	const cardTitle = document.createElement("h5");
-	cardTitle.className = 'card-title';
-	cardTitle.appendChild(document.createTextNode(data.name));
-	const cardText = document.createElement('p');
-	cardText.className = 'card-text';
-	cardText.appendChild(document.createTextNode('coming soon...'));
-	const cardButton = document.createElement('a');
-	cardButton.className = 'btn btn-primary';
-	cardButton.setAttribute('href', data.url);
-	cardButton.setAttribute('target', '_blank');
-	cardButton.appendChild(document.createTextNode('View Product'));
+	const cardBodyDiv = setUpCardBody();
+	const cardTitle = setUpCardTitle();
+	const cardText = setUpCardText(cardTitle);
 	cardBodyDiv.append(cardTitle);
 	cardBodyDiv.append(cardText);
+	const cardButton = setUpButton();
 	cardBodyDiv.append(cardButton);
 	cardParentDiv.append(cardBodyDiv);
 	recentlyStalkedSection.prepend(cardParentDiv);
 }
 
+function setUpCardBody(){
+	const cardBodyDiv = document.createElement('div');
+	cardBodyDiv.className = 'card-body';
+	return cardBodyDiv;
+}
 
+function setUpCardTitle(){
+	const cardTitle = document.createElement('h5');
+	cardTitle.className = 'card-title';
+	return cardTitle;
+}
+
+function setUpCardText(cardTitle){
+	const cardText = document.createElement('p');
+	cardTitle.appendChild(document.createTextNode(data.name));
+	cardText.className = 'card-text';
+	cardText.appendChild(document.createTextNode('coming soon...'));
+	return cardText;
+}
+
+function setUpButton(){
+	const cardButton = document.createElement('a');
+	cardButton.className = 'btn btn-primary';
+	cardButton.setAttribute('href', data.url);
+	cardButton.setAttribute('target', '_blank');
+	cardButton.appendChild(document.createTextNode('View Product'));
+	return cardButton;
+}
+
+// function setUpBookmarkImg(){
+// 	const bookmarkImg = document.createElement('img');
+// 	bookmarkImg.className = 'img-spacing';
+// 	const imgPath = '/static/icons/bookmark.svg';
+// 	bookrmarkImg.setAttribute('src', imgPath);
+// 	bookmarkImg.onclick = toggleBookmark(imgPath, );
+// 	return bookmarkImg;
+// }
