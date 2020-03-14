@@ -48,14 +48,13 @@ class Bookmarks(models.Model):
         return self.state
 
 
-class Keywords(models.Model):
-    product = models.ForeignKey(Products, on_delete=models.CASCADE,
-                                related_name='tagged_product',
-                                related_query_name='tagged_product')
+class Scrapers(models.Model):
 
-    keyword = models.CharField(max_length=50, blank=False)
+    website_url = models.CharField(max_length=100, blank=False)
 
-    date_tagged = models.DateTimeField(auto_now_add=True, blank=False)
+    price_element_selector = models.CharField(max_length=50, blank=False)
+
+    image_element_selector = models.CharField(max_length=50, blank=False)
 
     def __str__(self):
-        return self.product
+        return self.website_url
