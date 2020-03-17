@@ -4,7 +4,11 @@ import requests
 
 
 # Now this script or any imported module can use any part of Django it needs.
-from myapp import models
+from dashboard import models
+
+scraper = Scraper('amazon.com?V=owiurowieurowioeurowi',
+                  'span#blah', 'img.blah-class')
+price = scraper.getProductPrice()
 
 
 class Scraper:
@@ -31,10 +35,10 @@ class Scraper:
 
     def getProductImage(self):
         image = getSoup().select("'" + self.imgSelector + "'")
-        return iamge
+        return image
 
-    def getSoup(self):
+    def _getSoup(self):
         return BeautifulSoup(getRequestResponse().text, 'lxml')
 
-    def getRequestResponse(self):
+    def _getRequestResponse(self):
         return requests.get(self.url, headers=self.headers)
