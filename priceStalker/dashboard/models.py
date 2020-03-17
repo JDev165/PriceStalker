@@ -8,7 +8,7 @@ class Products(models.Model):
     name = models.CharField(max_length=50, blank=False)
     url = models.URLField(max_length=2000, blank=False)
     # Remove blank default when we start populating this
-    img_url = models.URLField(max_length=2000, blank=False, default='blank')
+    image_url = models.URLField(max_length=2000, blank=False, default='blank')
     date_stalked = models.DateTimeField(auto_now_add=True, blank=False)
 
     # override the way this model is displayed in the admin side

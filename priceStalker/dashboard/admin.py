@@ -6,7 +6,7 @@ from .models import Products, Prices, Notifications, Bookmarks, Scrapers
 
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
-    fields = ('name', 'url',)
+    fields = ('name', 'url', 'image_url',)
 
 
 @admin.register(Prices)
@@ -26,4 +26,5 @@ class BookmarksAdmin(admin.ModelAdmin):
 
 @admin.register(Scrapers)
 class ScrapersAdmin(admin.ModelAdmin):
-    list_display = ('website_url','price_element_selector','image_element_selector',)
+    list_display = ('website_url', 'price_element_selector',
+                    'image_element_selector',)
