@@ -26,4 +26,4 @@ class BookmarksAdmin(admin.ModelAdmin):
 
 @admin.register(Scrapers)
 class ScrapersAdmin(admin.ModelAdmin):
-    fields = ('website_url',)
+    list_display = ('website_url','price_element_selector','image_element_selector',)

@@ -11,9 +11,13 @@ class Products(models.Model):
 
     # override the way this model is displayed in the admin side
     # without this, all we see is 'Products Object'
+    
+    class Meta:
+        verbose_name_plural = 'Products'    
 
     def __str__(self):
         return self.name
+
 
 
 class Prices(models.Model):
@@ -24,12 +28,18 @@ class Prices(models.Model):
 
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
+    class Meta:
+        verbose_name_plural = 'Prices'
+
     def __str__(self):
         return self.price
 
 
 class Notifications(models.Model):
     email = models.EmailField(max_length=50, blank=False)
+
+    class Meta:
+        verbose_name_plural = 'Notifications'
 
     def __str__(self):
         return self.email
@@ -44,6 +54,9 @@ class Bookmarks(models.Model):
 
     date_bookmarked = models.DateTimeField(auto_now_add=True, blank=False)
 
+    class Meta:
+        verbose_name_plural = 'Bookmarks'
+
     def __str__(self):
         return self.state
 
@@ -55,6 +68,9 @@ class Scrapers(models.Model):
     price_element_selector = models.CharField(max_length=50, blank=False)
 
     image_element_selector = models.CharField(max_length=50, blank=False)
+
+    class Meta:
+        verbose_name_plural = 'Scrapers'
 
     def __str__(self):
         return self.website_url
