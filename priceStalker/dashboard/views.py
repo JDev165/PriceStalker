@@ -4,7 +4,8 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from dashboard.forms import ProductsForm, NotificationsForm
 from dashboard.classes import Form
-from dashboard.models import Products, Bookmarks
+from dashboard.models import Products, Bookmarks, Scrapers, Prices
+from dashboard.scrapers import scraper
 
 
 # Create your views here.
@@ -36,11 +37,19 @@ def subscribe(request):
 def stalk(request):
     # request from fetch results in not valid form
     if request.method == 'POST':
-        body_unicode = request.body.decode('utf-8')
-        body = json.loads(body_unicode)
+        bodyUnicode = request.body.decode('utf-8')
+        body = json.loads(bodyUnicode)
         productsForm = ProductsForm(body)
         if productsForm.is_valid():
-            productsForm.save()
+            product = productsForm.save()
+            mainUrlList = body['url'].split('/', 3)
+            domain = mainUrlList[0] + '//' + mainUrlList[2] + '/'
+            scraper = Scrapers.objects.get(website_url=domain)[0]
+            if scraper:
+              scraperHandler = Scraper(body['url'])
+              priceScraped = scraperHandler.getProductPrice(scraper['price_element_selector'])
+              price = Prices(product=product, price=priceScraped)
+              price.save()
             jsonResponse = JsonResponse(body)
         else:
             jsonResponse = JsonResponse({})
@@ -52,8 +61,8 @@ def stalk(request):
 
 def bookmark(request):
     if request.method == 'POST':
-        body_unicode = request.body.decode('utf-8')
-        body = json.loads(body_unicode)
+        bodyUnicode = request.body.decode('utf-8')
+        body = json.loads(bodyUnicode)
         bookmarkState = body['bookmark']
         productId = body['product']
         product = Products.objects.get(id=productId)

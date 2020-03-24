@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.forms import ModelForm
-from dashboard.models import Products, Notifications, Bookmarks
+from dashboard.models import Products, Notifications
 
 
 class ProductsForm(ModelForm):
@@ -13,9 +13,3 @@ class NotificationsForm(ModelForm):
     class Meta:
         model = Notifications
         fields = ('email',)
-
-
-class BookamrksForm(ModelForm):
-    class Meta:
-        model = Bookmarks
-        fields = ()
