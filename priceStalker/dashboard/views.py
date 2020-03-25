@@ -6,7 +6,6 @@ from dashboard.forms import ProductsForm, NotificationsForm
 from dashboard.classes import Form
 from dashboard.models import Products, Bookmarks, Scrapers, Prices
 from dashboard.scrapers.scraper import Scraper
-from decimal import Decimal
 
 
 # Create your views here.
@@ -49,8 +48,8 @@ def stalk(request):
             if scraperRecord:
               scraperHandler = Scraper(body['url'])
               priceScraped = scraperHandler.getProductPrice(scraperRecord.price_element_selector)
-              priceScrapedFloat = Decimal(priceScraped)
-              price = Prices(product=product, price=priceScrapedFloat)
+              notAvailable = 1 if priceScraped == 0 else 0
+              price = Prices(product=product, price=priceScraped, not_available=notAvailable)
               price.save()
             jsonResponse = JsonResponse(body)
         else:

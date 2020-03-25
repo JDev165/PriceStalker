@@ -29,11 +29,13 @@ class Prices(models.Model):
 
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
+    not_available = models.BooleanField(default=0, blank=False)
+
     class Meta:
         verbose_name_plural = 'Prices'
 
     def __str__(self):
-        return self.price
+        return str(self.price)
 
 
 class Notifications(models.Model):

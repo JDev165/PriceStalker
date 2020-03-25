@@ -23,7 +23,7 @@ class Scraper:
     def getProductPrice(self, priceSelector):
         # Returns list so just need the first occurrence, hence price[0]
         priceElementsList = self._getSoup().select(priceSelector)
-        price = 'N/A' if len(priceElementsList) == 0 else priceElementsList[0].text
+        price = 0 if len(priceElementsList) == 0 else priceElementsList[0].text.replace('$','')
         return price
 
     def getProductImageSrc(self, imgSelector):
