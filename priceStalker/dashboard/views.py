@@ -51,6 +51,10 @@ def stalk(request):
               notAvailable = 1 if priceScraped == 0 else 0
               price = Prices(product=product, price=priceScraped, not_available=notAvailable)
               price.save()
+              imgSrcScraped = scraperHandler.getProductImageSrc(scraperRecord.image_element_selector)
+              product = Products.objects.get(id=product.id)
+              product.image_url = imgSrcScraped
+              product.save()
             jsonResponse = JsonResponse(body)
         else:
             jsonResponse = JsonResponse({})

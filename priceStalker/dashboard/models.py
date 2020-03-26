@@ -61,7 +61,7 @@ class Bookmarks(models.Model):
         verbose_name_plural = 'Bookmarks'
 
     def __str__(self):
-        return self.state
+        return str(self.state)
 
 
 class Scrapers(models.Model):

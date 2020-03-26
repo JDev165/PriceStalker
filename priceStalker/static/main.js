@@ -1,6 +1,6 @@
 //Bookmark functions
 function toggleBookmark(requestUrl, data, imgElement){
-	const bookmarkState = setBookmarkState(data, imgElement);
+	const bookmarkState = setBookmarkState(imgElement);
 	data['bookmark'] = bookmarkState;
 	const response = postData(requestUrl, data);
 	console.log(response != -1);
@@ -9,7 +9,7 @@ function toggleBookmark(requestUrl, data, imgElement){
 	}
 }
 
-function setBookmarkState(data, imgElement){
+function setBookmarkState(imgElement){
 	let state = 0;
 	if(imgElement.getAttribute('src') == '/static/icons/bookmark.svg'){
 		state = 1;

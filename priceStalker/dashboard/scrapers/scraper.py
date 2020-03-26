@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 import requests
-# import ast
+import ast
 
 
 class Scraper:
@@ -31,6 +31,8 @@ class Scraper:
         imageElementsList = self._getSoup().select(imgSelector)
         imageSrc = imageElementsList[0] if len(
             imageElementsList) >= 1 else 'N/A'
+        imagesDict = ast.literal_eval(imageSrc.get('data-a-dynamic-image'))
+        imageSrc = next(iter(imagesDict))
         return imageSrc
 
     def _getSoup(self):
