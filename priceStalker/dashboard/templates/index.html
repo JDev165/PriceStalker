@@ -22,7 +22,8 @@
 			<div id="product_{{product.id}}" class="recently-stalked-area" style="width: 18rem;">
 				<div class="card-body">
     				<h5 class="card-title">{{product.name}}</h5>
-    				<p class="card-text">coming soon...</p>
+    				<img src="{{product.image_url}}"/>
+    				<p class="card-text">Current Price: {{product|get_product_price}}</p>
     				<a href="{{product.url}}" target="_blank" class="btn btn-primary">View Product</a>
     				<img class="img-spacing" 
     					 src="{{product|get_bookmark_src}}"

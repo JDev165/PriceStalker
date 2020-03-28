@@ -24,8 +24,8 @@ class Products(models.Model):
 class Prices(models.Model):
 
     product = models.ForeignKey(Products, on_delete=models.CASCADE,
-                                related_name='product',
-                                related_query_name='product')
+                                related_name='product_price',
+                                related_query_name='product_price')
 
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
@@ -66,11 +66,11 @@ class Bookmarks(models.Model):
 
 class Scrapers(models.Model):
 
-    website_url = models.CharField(max_length=100, blank=False)
+    website_url = models.CharField(max_length=500, blank=False)
 
-    price_element_selector = models.CharField(max_length=50, blank=False)
+    price_element_selector = models.CharField(max_length=500, blank=False)
 
-    image_element_selector = models.CharField(max_length=50, blank=False)
+    image_element_selector = models.CharField(max_length=500, blank=False)
 
     class Meta:
         verbose_name_plural = 'Scrapers'

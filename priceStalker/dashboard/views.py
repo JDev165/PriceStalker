@@ -46,15 +46,18 @@ def stalk(request):
             domain = mainUrlList[0] + '//' + mainUrlList[2] + '/'
             scraperRecord = Scrapers.objects.get(website_url=domain)
             if scraperRecord:
-              scraperHandler = Scraper(body['url'])
-              priceScraped = scraperHandler.getProductPrice(scraperRecord.price_element_selector)
-              notAvailable = 1 if priceScraped == 0 else 0
-              price = Prices(product=product, price=priceScraped, not_available=notAvailable)
-              price.save()
-              imgSrcScraped = scraperHandler.getProductImageSrc(scraperRecord.image_element_selector)
-              product = Products.objects.get(id=product.id)
-              product.image_url = imgSrcScraped
-              product.save()
+                scraperHandler = Scraper(body['url'])
+                priceScraped = scraperHandler.getProductPrice(
+                    scraperRecord.price_element_selector)
+                notAvailable = 1 if priceScraped == 0 else 0
+                price = Prices(product=product, price=priceScraped,
+                               not_available=notAvailable)
+                price.save()
+                imgSrcScraped = scraperHandler.getProductImageSrc(
+                    scraperRecord.image_element_selector)
+                product = Products.objects.get(id=product.id)
+                product.image_url = imgSrcScraped
+                product.save()
             jsonResponse = JsonResponse(body)
         else:
             jsonResponse = JsonResponse({})
@@ -71,9 +74,9 @@ def bookmark(request):
         bookmarkState = body['bookmark']
         productId = body['product']
         product = Products.objects.get(id=productId)
-        bookmark = Bookmarks.objects.filter(product = product)
+        bookmark = Bookmarks.objects.filter(product=product)
         if bookmark.exists():
-            bookmark.update(state = bookmarkState)
+            bookmark.update(state=bookmarkState)
         else:
             bookmark = Bookmarks(product=product, state=bookmarkState)
             bookmark.save()

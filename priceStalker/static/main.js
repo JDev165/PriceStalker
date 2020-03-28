@@ -21,7 +21,6 @@ function setBookmarkState(imgElement){
 	return state;
 }
 
-// Request functions
 function postData(requestUrl, data){
 	const response = makeRequest(requestUrl, data);
 
@@ -58,6 +57,7 @@ function createDataFromElements(keysArray){
 	return data;
 }
 
+// Request functions
 async function makeRequest(requestUrl, data){
 	var jsonResponse = '';
 	try{
@@ -85,7 +85,6 @@ function getCookie(name){
 }
 
 //Generic functions
-
 function generateProduct(){
 	const recentlyStalkedSection = document.getElementById('recently_stalked');
 	const cardParentDiv = document.createElement('div');
@@ -130,12 +129,3 @@ function setUpButton(){
 	cardButton.appendChild(document.createTextNode('View Product'));
 	return cardButton;
 }
-
-// function setUpBookmarkImg(){
-// 	const bookmarkImg = document.createElement('img');
-// 	bookmarkImg.className = 'img-spacing';
-// 	const imgPath = '/static/icons/bookmark.svg';
-// 	bookrmarkImg.setAttribute('src', imgPath);
-// 	bookmarkImg.onclick = toggleBookmark(imgPath, );
-// 	return bookmarkImg;
-// }
