@@ -5,24 +5,30 @@
 {% load static %}
 {% load dashboard_filters %}
 <main>
-	
 	<section id="quick_stalk" name="quick_stalk" class="section-quick-stalk">
-		<h2>Stalk a product</h2>
-		
-		<div id="quick_stalk_fields"  name="quick_stalk_fields">
-			{{ formset }}
-		</div>
+		<h2>Stalk A Product</h2>
+		<div id="quick_stalk_fields"  name="quick_stalk_fields" class="sub-section-quick-stalk">
+			<div class="form-inline">
+				{% for field in formset %}
+					<div class="form-group mx-sm-3 mb-2">
+						<label for="{{ field.auto_id }}" class="sr-only">{{ field.label }}</label>
+					    <input type="{{ field.field.widget.input_type }}" id="{{ field.auto_id }}" name="{{ field.name }}" class="form-control" placeholder="{{ field.label }}" />
+					</div>    
+				{% endfor %}
 
-		<button id="submit_quick_stalk" name="submit_quick_stalk" class="submit-button" 
-				onclick="postFieldsData(`{% url 'stalk' %}`,'id_name, id_url'); generateProduct();">Stalk</button>
+			    <button id="submit_quick_stalk" name="submit_quick_stalk" class="submit-button btn btn-primary mb-2" 
+						  onclick="postFieldsData(`{% url 'stalk' %}`,'id_name, id_url'); generateProduct();">Stalk</button>
+			</div>
+
+		</div>
 	</section>
 
 	<section id="recently_stalked" name="recently_stalked" class="section-recently-stalked">
 		{% for product in products %}
-			<div id="product_{{product.id}}" class="recently-stalked-area" style="width: 18rem;">
+			<div id="product_{{product.id}}" class="recently-stalked-product">
 				<div class="card-body">
     				<h5 class="card-title">{{product.name}}</h5>
-    				<img src="{{product.image_url}}"/>
+    				<img class="card-img-top" src="{{product.image_url}}" alt="Product Image" />
     				<p class="card-text">Current Price: {{product|get_product_price}}</p>
     				<a href="{{product.url}}" target="_blank" class="btn btn-primary">View Product</a>
     				<img class="img-spacing" 
@@ -32,19 +38,6 @@
 			</div>
 		{% endfor %}
 	</section>
-	
-	<!---
-    <section id="subscription_form" name="subscription_form" class="section-subscription">
-    	<h2>Subscribe to notifications</h2>
-        <form id="add_product" name="add_product" method="post" action="{% url 'subscribe' %}" enctype="multipart/form-data">
-		    {% csrf_token %}
-
-		    {{ formset2 }}
-
-		    <input type="submit" id="submit" name="submit" />
-		</form>
-    </section>
-    --->
 </main>
 
 {% endblock %}

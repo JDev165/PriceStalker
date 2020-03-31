@@ -16,11 +16,20 @@ body{
 /*--------------------------------------------------------------
 Section styles
 --------------------------------------------------------------*/
+
 .section-quick-stalk {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.sub-section-quick-stalk {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
 }
 
 .section-recently-stalked {
@@ -92,3 +101,21 @@ CSS Grid
     grid-area: recent;
 }
 */
+
+/*--------------------------------------------------------------
+Bootstrap Card CSS Overwrites
+--------------------------------------------------------------*/
+
+.card-img-top {
+    width: 150px !important;
+    height: 150px; !important;
+    object-fit: cover !important;
+}
+
+/*--------------------------------------------------------------
+CSS for Product Cards 
+--------------------------------------------------------------*/
+
+.recently-stalked-product {
+    width: 288px;
+}
