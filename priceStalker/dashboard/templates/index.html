@@ -38,6 +38,22 @@
 			</div>
 		{% endfor %}
 	</section>
+
+	<section id="bookmarked" name="bookmarked" class="section-bookmarked">
+		{% for bookmark in bookmarks %}
+			<div id="bookmarked_product_{{bookmark.product.id}}" class="bookmarked-product">
+				<div class="card-body">
+    				<h5 class="card-title">{{product.name}}</h5>
+    				<img class="card-img-top" src="{{bookmark.product.image_url}}" alt="Product Image" />
+    				<p class="card-text">Current Price: {{bookmark.product|get_product_price}}</p>
+    				<a href="{{bookmark.product.url}}" target="_blank" class="btn btn-primary">View Product</a>
+    				<img class="img-spacing" 
+    					 src="{{bookmark.product|get_bookmark_src}}"
+    					 onclick= "toggleBookmark(`{% url 'bookmark' %}`, {'product': '{{bookmark.product.id}}'}, this);">
+  				</div>
+			</div>
+		{% endfor %}
+	</section>
 </main>
 
 {% endblock %}

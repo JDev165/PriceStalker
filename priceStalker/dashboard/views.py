@@ -15,9 +15,11 @@ def dashboard(request):
     productsForm = ProductsForm()
     notificationsForm = NotificationsForm()
     products = Products.objects.all().order_by('-id')[:5]
+    bookmarks = Bookmarks.objects.all().order_by('-id')[:5]
     return render(request, 'index.html', {'formset': productsForm,
                                           'formset2': NotificationsForm,
-                                          'products': products})
+                                          'products': products,
+                                          'bookmarks': bookmarks})
 
 
 def subscribe(request):

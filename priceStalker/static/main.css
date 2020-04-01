@@ -22,6 +22,7 @@ Section styles
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 .sub-section-quick-stalk {
@@ -32,11 +33,13 @@ Section styles
     margin-bottom: 50px;
 }
 
-.section-recently-stalked {
+.section-recently-stalked,
+.section-bookmarked {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    padding: 150px;
 }
 
 .section-subscription {
@@ -78,14 +81,13 @@ Site header and footer styling
 }
 
 .site-footer {
+    font-style: italic;
     font-size: 1rem;
     text-align: center;
     padding: 2em;
     color: white;
-    background: #0A2239;
-    width: 100%;
-    position: fixed; 
-    bottom: 0;
+    background: #333;
+    margin-top: 20px;
 }
 
 /*--------------------------------------------------------------
@@ -132,7 +134,7 @@ CSS Grid
 */
 
 /*--------------------------------------------------------------
-Bootstrap Card CSS Overwrites
+Bootstrap CSS Overwrites
 --------------------------------------------------------------*/
 
 .card-img-top {
@@ -141,10 +143,15 @@ Bootstrap Card CSS Overwrites
     object-fit: cover !important;
 }
 
+.card-text {
+    margin: 20px 0px 20px 0px;
+}
+
 /*--------------------------------------------------------------
 CSS for Product Cards 
 --------------------------------------------------------------*/
 
-.recently-stalked-product {
-    width: 288px;
+.recently-stalked-product,
+.bookmarked-product {
+    width: 180px;
 }
