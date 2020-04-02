@@ -13,6 +13,10 @@ body{
     background: #FFFFFA;
 }
 
+img {
+    cursor: pointer;
+}
+
 /*--------------------------------------------------------------
 Section styles
 --------------------------------------------------------------*/
@@ -138,8 +142,8 @@ Bootstrap CSS Overwrites
 --------------------------------------------------------------*/
 
 .card-img-top {
-    width: 150px !important;
-    height: 150px; !important;
+    width: 170px !important;
+    height: 170px !important;
     object-fit: cover !important;
 }
 
