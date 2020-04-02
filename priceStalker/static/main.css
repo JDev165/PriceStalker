@@ -27,6 +27,7 @@ Section styles
     justify-content: center;
     align-items: center;
     padding: 20px;
+    height: 100%;
 }
 
 .sub-section-quick-stalk {
@@ -44,6 +45,7 @@ Section styles
     justify-content: space-around;
     align-items: center;
     padding: 150px;
+    height: 100%;
 }
 
 .section-subscription {
@@ -148,7 +150,11 @@ Bootstrap CSS Overwrites
 }
 
 .card-text {
-    margin: 20px 0px 20px 0px;
+    margin: 20px 0px 20px 0px !important;
+}
+
+.navbar {
+    margin: 0px !important;
 }
 
 /*--------------------------------------------------------------
