@@ -1,3 +1,10 @@
+//Scroll Functions
+function smoothScroll(target){
+	const targetID = target.getAttribute('data-scroll-to')
+	document.getElementById(targetID).scrollIntoView({behavior: 'smooth'});
+}
+
+
 //Bookmark functions
 function toggleBookmark(requestUrl, data, imgElement){
 	const bookmarkState = setBookmarkState(imgElement);

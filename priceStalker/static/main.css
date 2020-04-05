@@ -43,7 +43,8 @@ Section styles
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    padding: 150px;
+    padding: 20px;
+    height: 100vh; 
 }
 
 .section-subscription {
