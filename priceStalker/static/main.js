@@ -2,8 +2,19 @@
 function smoothScroll(target){
 	const targetID = target.getAttribute('data-scroll-to')
 	document.getElementById(targetID).scrollIntoView({behavior: 'smooth'});
+	removeActiveClass();
+	addActiveClass(target);
 }
 
+//Set active links
+function addActiveClass(target){
+	console.log(target);
+	target.parentElement.classList.add('active')
+}
+function removeActiveClass(){
+	console.log(document.querySelector('ul.nav.navbar-nav li.active'));
+	document.querySelector('ul.nav.navbar-nav li.active').classList.remove('active');
+}
 
 //Bookmark functions
 function toggleBookmark(requestUrl, data, imgElement){
