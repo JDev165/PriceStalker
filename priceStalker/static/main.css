@@ -44,8 +44,8 @@ Section styles
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    padding: 150px;
-    height: 100%;
+    padding: 20px;
+    height: 100vh;
 }
 
 .section-subscription {
