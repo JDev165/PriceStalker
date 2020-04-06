@@ -6,7 +6,7 @@ function smoothScroll(target){
 	addActiveClass(target);
 }
 
-//Set active links
+//Set active links functions
 function addActiveClass(target){
 	console.log(target);
 	target.parentElement.classList.add('active')
