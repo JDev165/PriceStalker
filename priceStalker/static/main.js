@@ -6,6 +6,10 @@ function smoothScroll(target){
 	addActiveClass(target);
 }
 
+function scrollToRecentlyStalked(){
+	document.getElementById('recently_stalked').scrollIntoView({behavior: 'smooth'});
+}
+
 //Set active links functions
 function addActiveClass(target){
 	console.log(target);

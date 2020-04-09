@@ -17,7 +17,7 @@
 				{% endfor %}
 
 			    <button id="submit_quick_stalk" name="submit_quick_stalk" class="submit-button btn btn-primary mb-2" 
-						  onclick="postFieldsData(`{% url 'stalk' %}`,'id_name, id_url'); generateProduct();">Stalk</button>
+						onclick="postFieldsData(`{% url 'stalk' %}`,'id_name, id_url'); generateProduct(); scrollToRecentlyStalked();">Stalk</button>
 			</div>
 
 		</div>
