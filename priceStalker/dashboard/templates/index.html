@@ -17,7 +17,9 @@
 				{% endfor %}
 
 			    <button id="submit_quick_stalk" name="submit_quick_stalk" class="submit-button btn btn-primary mb-2" 
-						onclick="postFieldsData(`{% url 'stalk' %}`,'id_name, id_url'); generateProduct(); scrollToRecentlyStalked();">Stalk</button>
+						onclick="postFieldsData(`{% url 'stalk' %}`,'id_name, id_url'); 			 generateProduct(); 
+								 scrollToRecentlyStalked(); 
+								 removeLast('recently_stalked');">Stalk</button>
 			</div>
 
 		</div>
@@ -25,7 +27,7 @@
 
 	<section id="recently_stalked" name="recently_stalked" class="section-recently-stalked">
 		{% for product in products %}
-			<div id="product_{{product.id}}" class="recently-stalked-product">
+			<div id="product_{{product.id}}" class="recently-stalked-product {{forloop.last|set_last_element_class}}">
 				<div class="card-body">
     				<h5 class="card-title">{{product.name}}</h5>
     				<img class="card-img-top" src="{{product.image_url}}" alt="Product Image" />

@@ -28,3 +28,9 @@ def get_product_price(product):
 
     productPriceWithSymbol = '$' + str(productPrice)
     return productPriceWithSymbol
+
+
+@register.filter(name='set_last_element_class')
+def set_last_element_class(last):
+    lastClass = "last-product" if last else ""
+    return lastClass

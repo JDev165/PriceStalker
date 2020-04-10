@@ -1,3 +1,11 @@
+//Remove last product
+function removeLast(section){
+	const className = section == 'recently_stalked' ? 'last-product' : 'last-bookmarked-product';
+	//Retunrs back collection/array
+	productElement = document.getElementsByClassName(className)[0];
+	productElement.parentNode.removeChild(productElement);
+}
+
 //Scroll Functions
 function smoothScroll(target){
 	const targetID = target.getAttribute('data-scroll-to')
