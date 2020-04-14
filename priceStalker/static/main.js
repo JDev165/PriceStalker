@@ -7,25 +7,25 @@ function removeLast(section){
 }
 
 //Scroll Functions
-function smoothScroll(target){
+function navSmoothScroll(target){
 	const targetID = target.getAttribute('data-scroll-to')
 	document.getElementById(targetID).scrollIntoView({behavior: 'smooth'});
 	removeActiveClass();
 	addActiveClass(target);
 }
 
-function scrollToRecentlyStalked(){
-	document.getElementById('recently_stalked').scrollIntoView({behavior: 'smooth'});
+function smoothScrollToSection(sectionID){
+	document.getElementById(sectionID).scrollIntoView({behavior: 'smooth'});
 }
 
 //Set active links functions
-function addActiveClass(target){
-	console.log(target);
-	target.parentElement.classList.add('active')
-}
 function removeActiveClass(){
 	console.log(document.querySelector('ul.nav.navbar-nav li.active'));
 	document.querySelector('ul.nav.navbar-nav li.active').classList.remove('active');
+}
+function addActiveClass(target){
+	console.log(target);
+	target.parentElement.classList.add('active')
 }
 
 //Bookmark functions
@@ -33,9 +33,17 @@ function toggleBookmark(requestUrl, data, imgElement){
 	const bookmarkState = setBookmarkState(imgElement);
 	data['bookmark'] = bookmarkState;
 	const response = postData(requestUrl, data);
-	console.log(response != -1);
 	if (response != -1){
 		swapImages(bookmarkState, imgElement);
+	}
+
+	if(bookmarkState){
+		generateProduct('bookmarked', data);
+	    smoothScrollToSection('bookmarked');
+	   	removeLast('bookmarked');
+	}
+	else{
+		//Add in unbookmark case. (remove unbookmarked product and load in next in query)
 	}
 }
 
@@ -66,10 +74,16 @@ function swapImages(state, imgElement){
 	}
 }
 
-function postFieldsData(requestUrl, elementIds){
+
+// POST function for Quick Stalk
+function postFieldsData(requestUrl, elementIds, sectionID){
 	const idsArray = elementIds.split(',');
 	data = createDataFromElements(idsArray);
 	const response = makeRequest(requestUrl, data);
+
+	generateProduct(sectionID, data);
+	smoothScrollToSection(sectionID);
+	removeLast(sectionID);
 
 	return response
 }
@@ -115,20 +129,20 @@ function getCookie(name){
 }
 
 //Generic functions
-function generateProduct(){
-	const recentlyStalkedSection = document.getElementById('recently_stalked');
+function generateProduct(sectionID, data){
+	const section = document.getElementById(sectionID);
 	const cardParentDiv = document.createElement('div');
 	cardParentDiv.className = 'card';
 	cardParentDiv.setAttribute('style', 'width: 18rem');
 	const cardBodyDiv = setUpCardBody();
 	const cardTitle = setUpCardTitle();
-	const cardText = setUpCardText(cardTitle);
+	const cardText = setUpCardText(cardTitle, data);
 	cardBodyDiv.append(cardTitle);
 	cardBodyDiv.append(cardText);
-	const cardButton = setUpButton();
+	const cardButton = setUpButton(data);
 	cardBodyDiv.append(cardButton);
 	cardParentDiv.append(cardBodyDiv);
-	recentlyStalkedSection.prepend(cardParentDiv);
+	section.prepend(cardParentDiv);
 }
 
 function setUpCardBody(){
@@ -143,15 +157,15 @@ function setUpCardTitle(){
 	return cardTitle;
 }
 
-function setUpCardText(cardTitle){
+function setUpCardText(cardTitle, data){
 	const cardText = document.createElement('p');
 	cardTitle.appendChild(document.createTextNode(data.name));
 	cardText.className = 'card-text';
-	cardText.appendChild(document.createTextNode('coming soon...'));
+	cardText.appendChild(document.createTextNode('Refresh to load image...'));
 	return cardText;
 }
 
-function setUpButton(){
+function setUpButton(data){
 	const cardButton = document.createElement('a');
 	cardButton.className = 'btn btn-primary';
 	cardButton.setAttribute('href', data.url);

@@ -17,9 +17,7 @@
 				{% endfor %}
 
 			    <button id="submit_quick_stalk" name="submit_quick_stalk" class="submit-button btn btn-primary mb-2" 
-						onclick="postFieldsData(`{% url 'stalk' %}`,'id_name, id_url'); 			 generateProduct(); 
-								 scrollToRecentlyStalked(); 
-								 removeLast('recently_stalked');">Stalk</button>
+						onclick="postFieldsData(`{% url 'stalk' %}`,'id_name, id_url', 'recently_stalked');">Stalk</button>
 			</div>
 
 		</div>
@@ -43,7 +41,8 @@
 
 	<section id="bookmarked" name="bookmarked" class="section-bookmarked">
 		{% for bookmark in bookmarks %}
-			<div id="bookmarked_product_{{bookmark.product.id}}" class="bookmarked-product">
+			<div id="bookmarked_product_{{bookmark.product.id}}" class="bookmarked-product 
+			{{forloop.last|set_last_bookmarked_class}}">
 				<div class="card-body">
     				<h5 class="card-title">{{product.name}}</h5>
     				<img class="card-img-top" src="{{bookmark.product.image_url}}" alt="Product Image" />
