@@ -13,11 +13,11 @@ from dashboard.scrapers.scraper import Scraper
 
 def dashboard(request):
     productsForm = ProductsForm()
-    notificationsForm = NotificationsForm()
+    # Not in use right now
+    # notificationsForm = NotificationsForm()
     products = Products.objects.all().order_by('-id')[:5]
-    bookmarks = Bookmarks.objects.all().order_by('-id')[:5]
+    bookmarks = Bookmarks.objects.filter(state=1).order_by('-id')[:5]
     return render(request, 'index.html', {'formset': productsForm,
-                                          'formset2': NotificationsForm,
                                           'products': products,
                                           'bookmarks': bookmarks})
 
@@ -82,8 +82,9 @@ def bookmark(request):
         else:
             bookmark = Bookmarks(product=product, state=bookmarkState)
             bookmark.save()
-
-        return JsonResponse({'product': productId})
+        response = JsonResponse(
+            {'name': product.name, 'url': product.url, 'image_url': product.image_url})
+        return response
 
 
 def error(request):

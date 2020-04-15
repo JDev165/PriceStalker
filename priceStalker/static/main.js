@@ -29,16 +29,17 @@ function addActiveClass(target){
 }
 
 //Bookmark functions
-function toggleBookmark(requestUrl, data, imgElement){
+async function toggleBookmark(requestUrl, data, imgElement){
 	const bookmarkState = setBookmarkState(imgElement);
 	data['bookmark'] = bookmarkState;
-	const response = postData(requestUrl, data);
+	const response = await postData(requestUrl, data);
+
 	if (response != -1){
 		swapImages(bookmarkState, imgElement);
 	}
 
 	if(bookmarkState){
-		generateProduct('bookmarked', data);
+		generateProduct('bookmarked', response);
 	    smoothScrollToSection('bookmarked');
 	   	removeLast('bookmarked');
 	}
@@ -59,9 +60,8 @@ function setBookmarkState(imgElement){
 	return state;
 }
 
-function postData(requestUrl, data){
-	const response = makeRequest(requestUrl, data);
-
+async function postData(requestUrl, data){
+	const response = await makeRequest(requestUrl, data);
 	return response;
 }
 
@@ -84,8 +84,6 @@ function postFieldsData(requestUrl, elementIds, sectionID){
 	generateProduct(sectionID, data);
 	smoothScrollToSection(sectionID);
 	removeLast(sectionID);
-
-	return response
 }
 
 function createDataFromElements(keysArray){
