@@ -32,7 +32,7 @@ function addActiveClass(target){
 async function toggleBookmark(requestUrl, data, imgElement){
 	const bookmarkState = setBookmarkState(imgElement);
 	data['bookmark'] = bookmarkState;
-	const response = await postData(requestUrl, data);
+	const response = await makeRequest(requestUrl, data);
 
 	if (response != -1){
 		swapImages(bookmarkState, imgElement);
@@ -58,11 +58,6 @@ function setBookmarkState(imgElement){
 	}
 
 	return state;
-}
-
-async function postData(requestUrl, data){
-	const response = await makeRequest(requestUrl, data);
-	return response;
 }
 
 function swapImages(state, imgElement){
